@@ -2,6 +2,7 @@ version: '3.9'
 services:
   db:
     image: mysql:5.7
+    platform: linux/amd64
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
@@ -11,6 +12,9 @@ services:
 
   wordpress:
     image: wordpress:latest
+    ports:
+      - "8000:80"
+    platform: linux/amd64
     depends_on:
       - db
     environment:
@@ -36,6 +40,7 @@ services:
     restart: always
 
   phpmyadmin:
+    platform: linux/amd64
     image: phpmyadmin:latest
     depends_on:
       - db
